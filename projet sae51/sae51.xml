@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.1.1
+- https://www.phpmyadmin.net
+-
+- Hôte : 127.0.0.1
+- Généré le : mar. 19 déc. 2023 à 21:42
+- Version du serveur : 10.4.22-MariaDB
+- Version de PHP : 8.1.2
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="sae51" collation="utf8mb4_general_ci" charset="utf8mb4">
+            <pma:table name="employe">
+                CREATE TABLE `employe` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `nom` varchar(255) DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="install">
+                CREATE TABLE `install` (
+                  `machineId` int(11) DEFAULT NULL,
+                  `logicielId` int(11) DEFAULT NULL,
+                  KEY `machineId` (`machineId`),
+                  KEY `logicielId` (`logicielId`),
+                  CONSTRAINT `install_ibfk_1` FOREIGN KEY (`machineId`) REFERENCES `machine` (`id`),
+                  CONSTRAINT `install_ibfk_2` FOREIGN KEY (`logicielId`) REFERENCES `logiciel` (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="logiciel">
+                CREATE TABLE `logiciel` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `nom` varchar(255) DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="machine">
+                CREATE TABLE `machine` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `marque` varchar(255) DEFAULT NULL,
+                  `anne` year(4) DEFAULT NULL,
+                  `ram` int(11) DEFAULT NULL,
+                  `os` varchar(255) DEFAULT NULL,
+                  `employeId` int(11) DEFAULT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `employeId` (`employeId`),
+                  CONSTRAINT `machine_ibfk_1` FOREIGN KEY (`employeId`) REFERENCES `employe` (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+            <pma:table name="maintenance">
+                CREATE TABLE `maintenance` (
+                  `interventionDate` datetime DEFAULT NULL,
+                  `nom` varchar(255) DEFAULT NULL,
+                  `machineId` int(11) DEFAULT NULL,
+                  KEY `machineId` (`machineId`),
+                  CONSTRAINT `maintenance_ibfk_1` FOREIGN KEY (`machineId`) REFERENCES `machine` (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Base de données : 'sae51'
+    -->
+    <database name="sae51">
+        <!-- Table employe -->
+        <table name="employe">
+            <column name="id">1</column>
+            <column name="nom">BOB</column>
+        </table>
+        <table name="employe">
+            <column name="id">2</column>
+            <column name="nom">BILL</column>
+        </table>
+        <table name="employe">
+            <column name="id">3</column>
+            <column name="nom">BANANE</column>
+        </table>
+        <!-- Table install -->
+        <table name="install">
+            <column name="machineId">3</column>
+            <column name="logicielId">2</column>
+        </table>
+        <table name="install">
+            <column name="machineId">3</column>
+            <column name="logicielId">2</column>
+        </table>
+        <table name="install">
+            <column name="machineId">3</column>
+            <column name="logicielId">2</column>
+        </table>
+        <table name="install">
+            <column name="machineId">3</column>
+            <column name="logicielId">1</column>
+        </table>
+        <table name="install">
+            <column name="machineId">3</column>
+            <column name="logicielId">3</column>
+        </table>
+        <!-- Table logiciel -->
+        <table name="logiciel">
+            <column name="id">1</column>
+            <column name="nom">vscode</column>
+        </table>
+        <table name="logiciel">
+            <column name="id">2</column>
+            <column name="nom">vscode</column>
+        </table>
+        <table name="logiciel">
+            <column name="id">3</column>
+            <column name="nom">paint</column>
+        </table>
+        <!-- Table machine -->
+        <table name="machine">
+            <column name="id">1</column>
+            <column name="marque">BOB</column>
+            <column name="anne">2012</column>
+            <column name="ram">4</column>
+            <column name="os">linux</column>
+            <column name="employeId">1</column>
+        </table>
+        <table name="machine">
+            <column name="id">2</column>
+            <column name="marque">HP</column>
+            <column name="anne">2012</column>
+            <column name="ram">4</column>
+            <column name="os">linux</column>
+            <column name="employeId">1</column>
+        </table>
+        <table name="machine">
+            <column name="id">3</column>
+            <column name="marque">Dell</column>
+            <column name="anne">2019</column>
+            <column name="ram">8</column>
+            <column name="os">Windows 10</column>
+            <column name="employeId">2</column>
+        </table>
+        <table name="machine">
+            <column name="id">4</column>
+            <column name="marque">HP</column>
+            <column name="anne">2020</column>
+            <column name="ram">16</column>
+            <column name="os">Windows 10</column>
+            <column name="employeId">2</column>
+        </table>
+        <!-- Table maintenance -->
+        <table name="maintenance">
+            <column name="interventionDate">2021-12-03 00:00:00</column>
+            <column name="nom">Jean Naymare</column>
+            <column name="machineId">3</column>
+        </table>
+        <table name="maintenance">
+            <column name="interventionDate">2021-12-03 00:00:00</column>
+            <column name="nom">Jean Naymare</column>
+            <column name="machineId">3</column>
+        </table>
+        <table name="maintenance">
+            <column name="interventionDate">2021-11-24 00:00:00</column>
+            <column name="nom">Jean Naymare</column>
+            <column name="machineId">3</column>
+        </table>
+        <table name="maintenance">
+            <column name="interventionDate">2021-11-24 00:00:00</column>
+            <column name="nom">Jean Naymare</column>
+            <column name="machineId">1</column>
+        </table>
+    </database>
+</pma_xml_export>

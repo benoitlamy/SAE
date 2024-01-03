@@ -1,0 +1,32 @@
+version: '3.7'
+
+services:
+  mysql:
+    image: mysql:8
+    ports:
+      - '3306:3306'
+    security_opt:
+    - seccomp:unconfined
+    restart: always
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQLPWD}
+    volumes:
+      - 'mysql_data:/var/lib/mysql'
+      - './conf_mysql.sql:/docker-entrypoint-initdb.d/sae51.sql'
+    networks:
+      sae_network:
+        ipv4_address: 172.36.30.2
+
+volumes:
+  mysql_data:
+
+networks:
+  sae_network:
+    name: sae_network_51
+    external: false
+    driver: bridge
+    enable_ipv6: false
+    ipam:
+      config:
+        - subnet: 172.36.0.0/16
